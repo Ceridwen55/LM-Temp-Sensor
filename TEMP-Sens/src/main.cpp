@@ -5,8 +5,9 @@
 int readPin = A2;
 float scaleFactor = 0.01;
 float temp;
-float readValue;
-float calcValue;
+float readVoltageSensorValue;
+float calcVoltValue;
+float tempF;
 
 void setup()
 {
@@ -16,9 +17,14 @@ void setup()
 
 void loop() 
 { 
-  readValue = analogRead(readPin);
-  calcValue = readValue * (5.0/1023.0);
-  temp = calcValue / scaleFactor;
+  readVoltageSensorValue = analogRead(readPin);
+  calcVoltValue = readVoltageSensorValue * (5.0/1023.0);
+  temp = calcVoltValue / scaleFactor;
+  tempF = (temp * 9/5) + 32 ;
+  Serial.print("C : ");
   Serial.println(temp);
-  delay(3000);
+  delay(500);
+  Serial.print("F : ");
+  Serial.println(tempF);
+  delay(500);
 }
